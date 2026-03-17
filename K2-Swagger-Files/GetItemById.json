@@ -1,0 +1,56 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "SP Get Item",
+    "version": "1.0"
+  },
+  "host": "demo.traveport-test.de",
+  "basePath": "",
+  "schemes": ["https"],
+  "produces": ["application/json"],
+  "paths": {
+    "/{SiteUrl}/_api/web/lists/GetByTitle('{listTitle}')/items({itemId})": {
+      "get": {
+        "operationId": "GetItem",
+        "parameters": [
+           {
+            "name": "SiteUrl",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "listTitle",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "itemId",
+            "in": "path",
+            "required": true,
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Item"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "Item": {
+      "type": "object",
+      "properties": {
+        "Id": { "type": "integer" },
+        "Title": { "type": "string" }
+      }
+    }
+  }
+
+}
