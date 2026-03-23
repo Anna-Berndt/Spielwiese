@@ -51,30 +51,25 @@
 	},
 	"definitions": {
 		"GetListItemsResponse": {
-			"type": "object",
+			"type":"object",
 			"properties": {
 				"value": {
 					"type": "array",
 					"items": {
-						"$ref": "#/definitions/GetListItems"
+						"$ref": "#/definitions/ListItem"
 					}
 				}
 			}
 		},
-		"GetListItems": {
-			"x-k2-displayName": "retrieving Items",
+		"ListItem": {
+			"type":"object",
 			"description": "Retrieving Items",
-			"required": ["Id"],
 			"properties": {
-				"Id": {
-					"type": "integer",
-					"format": "int32",
-					"x-example": "1"
-				},
-				"Title": {
-					"type": "string",
-					"x-example": "Test deck"
-				}
+				"Id": { "type": "integer" },
+				"Title": { "type": "string"	},
+				"Modified": { "type": "string", "format": "date-time" },
+          		"Created": { "type": "string", "format": "date-time" },
+
 			}
 		}
 	}
