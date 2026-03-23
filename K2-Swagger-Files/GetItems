@@ -1,0 +1,83 @@
+{
+	"swagger": "2.0",
+	"info": {
+		"title": "SharePoint List Items",
+		"description": "API for SharePoint List Items",
+		"version": "1.0.0.0"
+	},
+	"host": "demo.traveport-test.de",
+	"schemes": ["https"],
+	"paths": {
+		"/{SiteUrl}/_api/web/lists/GetByTitle('{ListTitle}')/items": {
+			"get": {
+				"tags": ["Sites"],
+				"description": "Get list items",
+				"operationId": "GetListItems",
+				"produces": ["application/json"],
+				"parameters": [{
+						"name": "SiteUrl",
+						"in": "path",
+						"description": "Site specific portion of URL, typically same as Site Title, including managed path",
+						"required": true,
+						"type": "string",
+						"x-example": "Sales"
+					}, 
+                    {
+						"name": "ListTitle",
+						"in": "path",
+						"description": "List title",
+						"required": true,
+						"type": "string",
+						"x-example": "Documents"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "Get list item by Site URL, List Title and List Item Id",
+						"schema": {
+							"$ref": "#/definitions/GetListItemsResponse"
+						}
+					},
+					"401": {
+						"description": "Unauthorized – authentication failed or missing"
+					},
+					"404": {
+						"description": "Not Found – site or list does not exist"
+					}
+				}
+			}
+			
+		}
+	},
+	"definitions": {
+		"GetListItemsResponse": {
+			"type": "object",
+			"properties": {
+				"value": {
+					"type": "array",
+					"items": {
+						"$ref": "#/definitions/GetListItems"
+					}
+				}
+			}
+		},
+		"GetListItems": {
+			"x-k2-displayName": "retrieving Items",
+			"description": "Retrieving Items",
+			"required": ["Id"],
+			"properties": {
+				"Id": {
+					"type": "integer",
+					"format": "int32",
+					"x-example": "1"
+				},
+				"Title": {
+					"type": "string",
+					"x-example": "Test deck"
+				}
+			}
+		}
+	}
+}
+  
+
